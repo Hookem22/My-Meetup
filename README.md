@@ -1,11 +1,11 @@
 # My-Meetup
 An iOS app that connects to the Meetup API to show upcoming events for your Meetup group
 
-Code for Meetup admins to have their own app for their group. To display events from your group:
+To display events for your or any public group:
 
 1.) Open MasterViewController.swift
 
-2.) Change MEETUP_NAME to the name of your meetup group
+2.) Change MEETUP_NAME to the name of the meetup group
 
 3.) Change MEETUP_API_KEY to your meetup API key. For more info: https://secure.meetup.com/meetup_api/key/
 
