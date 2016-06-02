@@ -3,9 +3,9 @@ import UIKit
 
 extension UIColor {
     static func hex(hexString: String) -> UIColor {
-        let red = base16to10(hexString.substringWithRange(Range<String.Index>(start: hexString.startIndex, end: hexString.startIndex.advancedBy(2))))
-        let green = base16to10(hexString.substringWithRange(Range<String.Index>(start: hexString.startIndex.advancedBy(2), end: hexString.startIndex.advancedBy(4))))
-        let blue = base16to10(hexString.substringWithRange(Range<String.Index>(start: hexString.startIndex.advancedBy(4), end: hexString.startIndex.advancedBy(6))))
+        let red = base16to10(hexString.substringWithRange(hexString.startIndex..<hexString.startIndex.advancedBy(2)))
+        let green = base16to10(hexString.substringWithRange(hexString.startIndex.advancedBy(2)..<hexString.startIndex.advancedBy(4)))
+        let blue = base16to10(hexString.substringWithRange(hexString.startIndex.advancedBy(4)..<hexString.startIndex.advancedBy(6)))
         
         return UIColor(red: CGFloat(red / 255.0), green: CGFloat(green / 255.0), blue: CGFloat(blue / 255.0), alpha: 1.0)
     }
@@ -43,3 +43,13 @@ extension UIColor {
         return returnVal
     }
 }
+
+public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+}
+
+public func <(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.compare(rhs) == .OrderedAscending
+}
+
+extension NSDate: Comparable { }

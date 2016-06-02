@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483FC8D11CAA35860054797B /* MeetupUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FC8D01CAA35860054797B /* MeetupUser.swift */; };
+		483FC8D31CAAE6240054797B /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FC8D21CAAE6240054797B /* KeychainWrapper.swift */; };
+		483FC8D51CAB01F00054797B /* MeetupUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FC8D41CAB01F00054797B /* MeetupUserTests.swift */; };
 		4858E6621CA466B800F8B9C4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858E6611CA466B800F8B9C4 /* MapViewController.swift */; };
 		4858E6641CA5CB6A00F8B9C4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4858E6631CA5CB6A00F8B9C4 /* Extensions.swift */; };
 		48B2B86A1CA1F39C0076EC03 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B2B8691CA1F39C0076EC03 /* EventCell.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		483FC8D01CAA35860054797B /* MeetupUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetupUser.swift; sourceTree = "<group>"; };
+		483FC8D21CAAE6240054797B /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		483FC8D41CAB01F00054797B /* MeetupUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetupUserTests.swift; sourceTree = "<group>"; };
 		4858E6611CA466B800F8B9C4 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4858E6631CA5CB6A00F8B9C4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		48B2B8691CA1F39C0076EC03 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -94,6 +100,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4862484A1CAEF735007A96F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				48B2B8691CA1F39C0076EC03 /* EventCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4862484B1CAEF73E007A96F9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				48FB7AA41CA1BE080060A5C1 /* MasterViewController.swift */,
+				48FB7AA61CA1BE080060A5C1 /* DetailViewController.swift */,
+				4858E6611CA466B800F8B9C4 /* MapViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		48FB7A961CA1BE080060A5C1 = {
 			isa = PBXGroup;
 			children = (
@@ -117,13 +141,12 @@
 		48FB7AA11CA1BE080060A5C1 /* Meetup */ = {
 			isa = PBXGroup;
 			children = (
-				48FB7AC41CA1BE830060A5C1 /* Classes */,
 				48FB7AA21CA1BE080060A5C1 /* AppDelegate.swift */,
-				48FB7AA41CA1BE080060A5C1 /* MasterViewController.swift */,
-				48FB7AA61CA1BE080060A5C1 /* DetailViewController.swift */,
-				4858E6611CA466B800F8B9C4 /* MapViewController.swift */,
-				48B2B8691CA1F39C0076EC03 /* EventCell.swift */,
+				48FB7AC41CA1BE830060A5C1 /* Models */,
+				4862484A1CAEF735007A96F9 /* Views */,
+				4862484B1CAEF73E007A96F9 /* Controllers */,
 				4858E6631CA5CB6A00F8B9C4 /* Extensions.swift */,
+				483FC8D21CAAE6240054797B /* KeychainWrapper.swift */,
 				48FB7AA81CA1BE090060A5C1 /* Main.storyboard */,
 				48FB7AAB1CA1BE090060A5C1 /* Assets.xcassets */,
 				48FB7AAD1CA1BE090060A5C1 /* LaunchScreen.storyboard */,
@@ -136,18 +159,20 @@
 			isa = PBXGroup;
 			children = (
 				48FB7AB91CA1BE090060A5C1 /* EventTests.swift */,
+				483FC8D41CAB01F00054797B /* MeetupUserTests.swift */,
 				48FB7ABB1CA1BE090060A5C1 /* Info.plist */,
 			);
 			path = MeetupTests;
 			sourceTree = "<group>";
 		};
-		48FB7AC41CA1BE830060A5C1 /* Classes */ = {
+		48FB7AC41CA1BE830060A5C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				48FB7AC51CA1BEB40060A5C1 /* Event.swift */,
 				48D6A8FF1CA333ED00852AA2 /* Venue.swift */,
+				483FC8D01CAA35860054797B /* MeetupUser.swift */,
 			);
-			name = Classes;
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +340,8 @@
 				48FB7AA51CA1BE080060A5C1 /* MasterViewController.swift in Sources */,
 				48FB7AA31CA1BE080060A5C1 /* AppDelegate.swift in Sources */,
 				4858E6621CA466B800F8B9C4 /* MapViewController.swift in Sources */,
+				483FC8D11CAA35860054797B /* MeetupUser.swift in Sources */,
+				483FC8D31CAAE6240054797B /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483FC8D51CAB01F00054797B /* MeetupUserTests.swift in Sources */,
 				48FB7ABA1CA1BE090060A5C1 /* EventTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Meetup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Pow-Wow.Meetup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,6 +484,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Meetup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Pow-Wow.Meetup";
 				PRODUCT_NAME = "$(TARGET_NAME)";

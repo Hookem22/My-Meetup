@@ -65,16 +65,14 @@ class Event {
     static func get(completionHandler: (([Event])->())?) {
         var meetupUrl = self.exampleMeetupUrl
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let meetupGroup = defaults.objectForKey("MeetupGroupName") as? String where meetupGroup != "MEETUP_NAME" {
-            if let apiKey = defaults.objectForKey("MeetupAPIKey") as? String where apiKey != "MEETUP_API_KEY" {
+        if let meetupGroup = KeychainWrapper.stringForKey("MeetupGroupName") where meetupGroup != "MEETUP_NAME" {
+            if let apiKey = KeychainWrapper.stringForKey("MeetupAPIKey") where apiKey != "MEETUP_API_KEY" {
                 meetupUrl = "https://api.meetup.com/2/events?key=\(apiKey)&group_urlname=\(meetupGroup)"
             }
         }
 
         Alamofire.request(.GET, meetupUrl)
-            .response { request, response, data, error in
-                
+            .response { request, response, data, error in                
                 var events = [Event]()
                 if response?.statusCode == 200 && data != nil {
                     let json = JSON(data: data!)

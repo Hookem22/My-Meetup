@@ -3,13 +3,57 @@ import EventKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var addressNameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var goingLabel: UILabel!
-    @IBOutlet weak var descriptionView: UIWebView!
+    @IBOutlet weak var nameLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                nameLabel.text = detailItem.name
+            }
+        }
+    }
+    @IBOutlet weak var timeLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                timeLabel.text = detailItem.formattedDateTime
+            }
+        }
+    }
+    @IBOutlet weak var addressNameLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                addressNameLabel.text = detailItem.venue.title
+            }
+        }
+    }
+    @IBOutlet weak var addressLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                addressLabel.text = detailItem.venue.subtitle
+            }
+        }
+    }
+    @IBOutlet weak var priceLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                priceLabel.text = detailItem.price
+            }
+        }
+    }
+    @IBOutlet weak var goingLabel: UILabel! {
+        didSet {
+            if let detailItem = detailItem {
+                goingLabel.text = "\(detailItem.rsvpYes) \(detailItem.groupUserLabel) going"
+            }
+        }
+    }
+    @IBOutlet weak var descriptionView: UIWebView! {
+        didSet {
+            if let detailItem = detailItem {
+                descriptionView.backgroundColor = UIColor.clearColor();
+                descriptionView.loadHTMLString(detailItem.description, baseURL: nil)
+            }
+        }
+    }
+    @IBOutlet weak var rsvpButton: UIButton!
     
     var detailItem: Event?
 
@@ -17,31 +61,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = ""
-        
-        if let event = self.detailItem as Event! {
-            if let nameLabel = self.nameLabel {
-                nameLabel.text = event.name
-            }
-            if let timeLabel = self.timeLabel {
-                timeLabel.text = event.formattedDateTime
-            }
-            if let addressNameLabel = self.addressNameLabel {
-                addressNameLabel.text = event.venue.title
-            }
-            if let addressLabel = self.addressLabel {
-                addressLabel.text = event.venue.subtitle
-            }
-            if let priceLabel = self.priceLabel {
-                priceLabel.text = event.price
-            }
-            if let goingLabel = self.goingLabel {
-                goingLabel.text = "\(event.rsvpYes) \(event.groupUserLabel) going"
-            }
-            if let descriptionView = self.descriptionView {                
-                descriptionView.backgroundColor = UIColor.clearColor();
-                descriptionView.loadHTMLString(event.description, baseURL: nil)
-            }
-        }
     }
     
 
@@ -71,9 +90,6 @@ class DetailViewController: UIViewController {
         let event = EKEvent(eventStore: eventStore)
         if let detail = self.detailItem as Event! {
         
-            print(detail.startDate)
-            print(detail.endDate)
-            
             event.title = detail.name
             event.startDate = detail.startDate
             event.endDate = detail.endDate
@@ -98,14 +114,37 @@ class DetailViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showMap" )
-        {
+        if (segue.identifier == "showMap" ) {
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MapViewController
             controller.venue = self.detailItem?.venue
         }
         
     }
     
+    @IBAction func rsvpButtonClick(sender: UIButton) {
+        
+        MeetupUser.getCurrentUser { currentUser in
+            if let user = currentUser as MeetupUser! {
+                user.joinEvent(self.detailItem!)
+                
+                //Update UI
+            }
+            else {
+                if let url = MeetupUser.authorizeUrl as String! {
+                    UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+                } else {
+                    print("Enter Meetup API Key in MasterViewController")
+                }
+            }
+        }
+    }
+    
+    func getAccessToken(code: String) {
+        MeetupUser.getAccesToken(code, completionHandler: { meetupUser in
+
+        })
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

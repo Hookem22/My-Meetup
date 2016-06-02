@@ -1,15 +1,13 @@
-//
-//  MasterViewController.swift
-//  Meetup
-//
-//  Created by Will Parks on 3/22/16.
-//  Copyright © 2016 Pow Wow. All rights reserved.
-//
 
 import UIKit
 
 class MasterViewController: UITableViewController {
 
+    let AppTitle = "Tech ^map"
+    let MeetupName = "CoFounder-Austin"
+    let MeetupAPIKey = "423761707442d79542e645e4120158"
+    let HeaderColor = "E0393E"
+    
     var detailViewController: DetailViewController? = nil
     var objects = [Event]()
 
@@ -17,15 +15,13 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("MEETUP_NAME", forKey: "MeetupGroupName")
-        defaults.setObject("MEETUP_API_KEY", forKey: "MeetupAPIKey")
+        KeychainWrapper.setString(MeetupName, forKey: "MeetupGroupName")
+        KeychainWrapper.setString(MeetupAPIKey, forKey: "MeetupAPIKey")
         
-        self.title = "Tech ^map"
-        navigationController?.navigationBar.barTintColor = UIColor.hex("E0393E")
+        self.title = AppTitle
+        navigationController?.navigationBar.barTintColor = UIColor.hex(HeaderColor)
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-
 
         Event.get { events in
             self.objects = events
