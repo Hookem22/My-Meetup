@@ -3,9 +3,9 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    let AppTitle = "Tech ^map"
-    let MeetupName = "CoFounder-Austin"
-    let MeetupAPIKey = "423761707442d79542e645e4120158"
+    let AppTitle = "TITLE"
+    let MeetupName = "MEETUP GROUP NAME"
+    let MeetupAPIKey = "API KEY"
     let HeaderColor = "E0393E"
     
     var detailViewController: DetailViewController? = nil
